@@ -29,6 +29,7 @@ module.exports = function(grunt) {
                     cwd: 'dev',
                     src: [
                         '**/*.html',
+                        '**/*.php',
                         'images/{,*/}*.{png,jpg,gif,svg}',
                         'js/libs/*.js',
                         'fonts/{,*/}*.{eot,svg,ttf,woff,woff2,otf}'
@@ -108,16 +109,16 @@ module.exports = function(grunt) {
             },
 
             images: {
-                files: ['dist/images/{,*/}*.{png,jpg,gif,svg}'],
-                tasks: ['copy:images'],
+                files: ['dev/images/{,*/}*.{png,jpg,gif,svg}'],
+                tasks: ['copy'],
                 options: {
                     livereload: true
                 }
             },
 
             js: {
-                files: ['dist/js/**/*.js'],
-                tasks: ['js'],
+                files: ['dev/js/**/*.js'],
+                tasks: ['concat'],
                 options: {
                     livereload: true
                 }
@@ -136,6 +137,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
 
     // Run tasks
-    grunt.registerTask('default', ['browserSync', 'sass', 'concat', 'uglify', 'jshint', 'copy', 'watch', ]);
+    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'jshint', 'copy', 'browserSync', 'watch', ]);
 
 };
